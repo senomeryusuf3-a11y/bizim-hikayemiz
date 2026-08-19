@@ -6,54 +6,412 @@
   <title>Bizim Hikayemiz</title>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { background-color: #1a1d24; color: #e6e8ec; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; display: flex; justify-content: center; align-items: center; min-height: 100vh; padding: 12px; }
-    .container { width: 100%; max-width: 400px; background: #232731; border-radius: 16px; padding: 20px 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); text-align: center; position: relative; }
-    .slide { display: none; opacity: 0; transition: opacity 0.4s ease; }
-    .slide.active { display: block; opacity: 1; }
-    .scene-box { width: 100%; height: 260px; background: #181a20; border-radius: 12px; position: relative; overflow: hidden; display: flex; justify-content: center; align-items: center; margin-bottom: 15px; border: 1px solid #2f3542; }
-    .char-head { width: 54px; height: 54px; border-radius: 50%; background-size: cover; background-position: center; position: absolute; z-index: 3; border: 2px solid #fff; box-shadow: 0 4px 8px rgba(0,0,0,0.3); }
+    body {
+      background-color: #1a1d24;
+      color: #e6e8ec;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 12px;
+    }
+    .container {
+      width: 100%;
+      max-width: 400px;
+      background: #232731;
+      border-radius: 16px;
+      padding: 20px 16px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+      text-align: center;
+      position: relative;
+    }
+    .slide {
+      display: none;
+      opacity: 0;
+      transition: opacity 0.4s ease;
+    }
+    .slide.active {
+      display: block;
+      opacity: 1;
+    }
+    .scene-box {
+      width: 100%;
+      height: 260px;
+      background: #181a20;
+      border-radius: 12px;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 15px;
+      border: 1px solid #2f3542;
+    }
+    
+    .char-head {
+      width: 54px;
+      height: 54px;
+      border-radius: 50%;
+      background-size: cover;
+      background-position: center;
+      position: absolute;
+      z-index: 3;
+      border: 2px solid #fff;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+    }
     .head-omer { background-image: url('1000064057.jpg'); }
     .head-sude { background-image: url('1000061928.jpg'); }
-    .head-omer-old { background-image: url('1000064057.jpg'); filter: grayscale(100%) contrast(120%); border-color: #7b8394; }
-    .dialog-bubble { position: absolute; background: #ffffff; color: #1a1a1a; font-size: 0.8rem; font-weight: 600; padding: 8px 12px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.25); z-index: 4; max-width: 80%; }
-    .time-tag { position: absolute; top: 8px; left: 50%; transform: translateX(-50%); background: rgba(0,0,0,0.6); color: #88c0d0; font-size: 0.7rem; padding: 3px 10px; border-radius: 10px; z-index: 5; }
-    .caption { font-size: 0.95rem; line-height: 1.5; min-height: 55px; margin-bottom: 15px; color: #d8dee9; }
-    .btn-next { background: #4c566a; color: #eceff4; border: none; padding: 12px 30px; border-radius: 20px; font-size: 0.95rem; font-weight: 600; cursor: pointer; width: 100%; transition: background 0.2s; }
-    .btn-next:active { background: #88c0d0; color: #1a1a1a; }
+    .head-omer-old {
+      background-image: url('1000064057.jpg');
+      filter: grayscale(100%) contrast(120%);
+      border-color: #7b8394;
+    }
+
+    .dialog-bubble {
+      position: absolute;
+      background: #ffffff;
+      color: #1a1a1a;
+      font-size: 0.8rem;
+      font-weight: 600;
+      padding: 8px 12px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+      z-index: 4;
+      max-width: 80%;
+    }
+    .dialog-bubble::after {
+      content: '';
+      position: absolute;
+      bottom: -6px;
+      left: 20px;
+      border-width: 6px 6px 0;
+      border-style: solid;
+      border-color: #ffffff transparent;
+    }
+
+    .time-tag {
+      position: absolute;
+      top: 8px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(0,0,0,0.6);
+      color: #88c0d0;
+      font-size: 0.7rem;
+      padding: 3px 10px;
+      border-radius: 10px;
+      z-index: 5;
+    }
+
+    .caption {
+      font-size: 0.95rem;
+      line-height: 1.5;
+      min-height: 55px;
+      margin-bottom: 15px;
+      color: #d8dee9;
+    }
+
+    .btn-next {
+      background: #4c566a;
+      color: #eceff4;
+      border: none;
+      padding: 12px 30px;
+      border-radius: 20px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      width: 100%;
+      transition: background 0.2s;
+    }
+    .btn-next:active {
+      background: #88c0d0;
+      color: #1a1a1a;
+    }
+
     svg { width: 100%; height: 100%; }
-    .body-fill { fill: #e5e9f0; stroke: #2e3440; stroke-width: 2; }
+    .body-fill { fill: #e5e9f0; stroke: #2e3440; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
     .cloth-sude { fill: #e06c75; }
     .cloth-omer { fill: #5e81ac; }
+    .line-stroke { stroke: #2e3440; stroke-width: 2.5; stroke-linecap: round; }
+    .speech-box {
+      background: rgba(46, 52, 64, 0.8);
+      border: 1px solid #d8dee9;
+      border-radius: 10px;
+      padding: 12px 15px;
+      font-size: 0.9rem;
+      font-style: italic;
+      line-height: 1.5;
+      margin-bottom: 15px;
+    }
   </style>
 </head>
 <body>
+
   <div class="container">
+
+    <!-- 1. Sahne -->
     <div class="slide active" id="slide-1">
       <div class="scene-box">
         <div class="dialog-bubble" style="top: 25px; left: 110px;">"Off, bicepsler de iyiymiş..."</div>
         <div class="char-head head-sude" style="left: 45px; top: 100px;"></div>
-        <svg viewBox="0 0 300 200"><rect x="20" y="145" width="260" height="25" rx="4" fill="#3b4252"/><rect x="30" y="125" width="60" height="20" rx="6" fill="#eceff4"/><path d="M 95,125 Q 140,120 180,135" class="body-fill cloth-sude"/><path d="M 180,135 L 230,140" class="body-fill"/></svg>
+        <svg viewBox="0 0 300 200">
+          <rect x="20" y="145" width="260" height="25" rx="4" fill="#3b4252" />
+          <rect x="30" y="125" width="60" height="20" rx="6" fill="#eceff4" />
+          <path d="M 95,125 Q 140,120 180,135" class="body-fill cloth-sude" />
+          <path d="M 180,135 L 230,140" class="body-fill" />
+          <path d="M 105,125 L 130,95 L 145,105" fill="none" class="line-stroke" stroke="#e5e9f0" />
+          <rect x="135" y="85" width="18" height="28" rx="2" fill="#88c0d0" stroke="#2e3440" stroke-width="1.5" transform="rotate(-15 135 85)" />
+        </svg>
       </div>
       <p class="caption">Profilime bakıp içinden geçirdiği o ilk düşünce...</p>
       <button class="btn-next" onclick="goToSlide(2)">Devam Et ›</button>
     </div>
+
+    <!-- 2. Sahne -->
     <div class="slide" id="slide-2">
       <div class="scene-box">
         <div class="dialog-bubble" style="top: 25px; left: 120px; background: #a3be8c;">"Selaaam 💬"</div>
         <div class="char-head head-sude" style="left: 45px; top: 100px;"></div>
-        <svg viewBox="0 0 300 200"><rect x="20" y="145" width="260" height="25" rx="4" fill="#3b4252"/><path d="M 95,125 Q 140,120 180,135" class="body-fill cloth-sude"/></svg>
+        <svg viewBox="0 0 300 200">
+          <rect x="20" y="145" width="260" height="25" rx="4" fill="#3b4252" />
+          <rect x="30" y="125" width="60" height="20" rx="6" fill="#eceff4" />
+          <path d="M 95,125 Q 140,120 180,135" class="body-fill cloth-sude" />
+          <path d="M 180,135 L 230,140" class="body-fill" />
+          <path d="M 105,125 L 130,85" fill="none" class="line-stroke" stroke="#e5e9f0" />
+          <rect x="125" y="70" width="20" height="30" rx="2" fill="#88c0d0" stroke="#2e3440" stroke-width="1.5" />
+        </svg>
       </div>
       <p class="caption">Ve ilk adım geldi: <strong>"Selaaam"</strong></p>
       <button class="btn-next" onclick="goToSlide(3)">Devam Et ›</button>
     </div>
-    <!-- (Kodun tamamı uzun olduğu için buraya sığdıramadım, tümünü kopyalayıp yapıştırabilirsin.) -->
-  </div>
-  <script>
-    function goToSlide(slideIndex) {
-      const currentActive = document.querySelector('.slide.active');
-      const nextSlide = document.getElementById('slide-' + slideIndex);
-      if (nextSlide) { currentActive.classList.remove('active'); nextSlide.classList.add('active'); }
-    }
-  </script>
-</body>
-</html>
+
+    <!-- 3. Sahne -->
+    <div class="slide" id="slide-3">
+      <div class="scene-box">
+        <div class="dialog-bubble" style="top: 15px; right: 20px; background: #ebcb8b;">❤️ Sude Mesaj Attı!</div>
+        <div class="char-head head-omer" style="left: 123px; top: 35px;"></div>
+        <svg viewBox="0 0 300 200">
+          <line x1="20" y1="180" x2="280" y2="180" stroke="#3b4252" stroke-width="2" />
+          <path d="M 135,88 L 165,88 L 170,140 L 130,140 Z" class="body-fill cloth-omer" />
+          <path d="M 130,140 L 170,140 L 175,180 L 155,180 L 150,150 L 145,180 L 125,180 Z" class="body-fill" style="fill:#2e3440;" />
+          <path d="M 165,95 L 190,110 L 180,85" fill="none" class="line-stroke" stroke="#e5e9f0" />
+          <rect x="175" y="70" width="16" height="24" rx="2" fill="#a3be8c" stroke="#2e3440" stroke-width="1.5" />
+          <path d="M 135,95 L 80,130" fill="none" class="line-stroke" stroke="#e5e9f0" />
+          <rect x="50" y="125" width="45" height="55" rx="3" fill="#4c566a" stroke="#2e3440" stroke-width="2" />
+          <text x="58" y="157" fill="#d8dee9" font-size="11" font-weight="bold">AĞIR</text>
+        </svg>
+      </div>
+      <p class="caption">Ağır bir işin ortasındayken gelen o tek bildirim bütün yorgunluğumu sildi.</p>
+      <button class="btn-next" onclick="goToSlide(4)">Devam Et ›</button>
+    </div>
+
+    <!-- 4. Sahne -->
+    <div class="slide" id="slide-4">
+      <div class="scene-box">
+        <div class="time-tag">⏳ 1 Hafta Sonra...</div>
+        <div class="dialog-bubble" style="top: 25px; right: 20px; font-size: 0.75rem;">"Dişi kurt kimin? 🐺"</div>
+        <div class="dialog-bubble" style="top: 60px; right: 20px; font-size: 0.75rem; background: #e06c75; color: white;">"Onun zatenn 🤍"</div>
+        <div class="char-head head-omer" style="left: 45px; top: 100px;"></div>
+        <svg viewBox="0 0 300 200">
+          <rect x="20" y="145" width="260" height="25" rx="4" fill="#3b4252" />
+          <rect x="30" y="125" width="60" height="20" rx="6" fill="#eceff4" />
+          <path d="M 95,125 Q 140,120 180,135" class="body-fill cloth-omer" />
+          <path d="M 180,135 L 230,140" class="body-fill" style="fill:#2e3440;" />
+          <path d="M 105,125 L 130,90" fill="none" class="line-stroke" stroke="#e5e9f0" />
+          <rect x="125" y="75" width="18" height="26" rx="2" fill="#ebcb8b" stroke="#2e3440" stroke-width="1.5" />
+        </svg>
+      </div>
+      <p class="caption">Yatağımda telefonun ekranına bakıp yüzümdeki o tebessümü saklayamadığım an...</p>
+      <button class="btn-next" onclick="goToSlide(5)">Devam Et ›</button>
+    </div>
+
+    <!-- 5. Sahne -->
+    <div class="slide" id="slide-5">
+      <div class="scene-box">
+        <div class="dialog-bubble" style="top: 20px; right: 20px; background: #3b4252; color: #88c0d0;">"Ben galiba aşık oldum..."</div>
+        <div class="dialog-bubble" style="top: 65px; right: 20px; background: #e06c75; color: white;">"Seni seviyorum ❤️"</div>
+        <div class="char-head head-omer" style="left: 45px; top: 100px;"></div>
+        <svg viewBox="0 0 300 200">
+          <rect x="20" y="145" width="260" height="25" rx="4" fill="#3b4252" />
+          <rect x="30" y="125" width="60" height="20" rx="6" fill="#eceff4" />
+          <path d="M 95,125 Q 140,120 180,135" class="body-fill cloth-omer" />
+          <path d="M 180,135 L 230,140" class="body-fill" style="fill:#2e3440;" />
+          <path d="M 105,125 L 135,80" fill="none" class="line-stroke" stroke="#e5e9f0" />
+          <rect x="130" y="65" width="18" height="26" rx="2" fill="#e06c75" stroke="#2e3440" stroke-width="1.5" />
+        </svg>
+      </div>
+      <p class="caption">Düşünceler içimde büyüdü ve o iki kelimeyi yazdım: "Seni seviyorum."</p>
+      <button class="btn-next" onclick="goToSlide(6)">Devam Et ›</button>
+    </div>
+
+    <!-- 6. Sahne -->
+    <div class="slide" id="slide-6">
+      <div class="scene-box">
+        <div class="time-tag">⏳ 1 Hafta Sonra...</div>
+        <div class="dialog-bubble" style="top: 25px; left: 10px; font-size: 0.65rem; background:#3b4252; color:#d08770;">"Off yine darlamaya başladı..."</div>
+        <div class="dialog-bubble" style="top: 60px; left: 15px; font-size: 0.75rem;">"Müsait değilim."</div>
+        
+        <div class="char-head head-sude" style="left: 45px; top: 75px;"></div>
+        <div class="char-head head-omer" style="right: 45px; top: 85px;"></div>
+        
+        <svg viewBox="0 0 300 200">
+          <line x1="150" y1="20" x2="150" y2="180" stroke="#3b4252" stroke-dasharray="4" />
+          <path d="M 60,125 L 85,125 L 88,155 L 57,155 Z" class="body-fill cloth-sude" />
+          <path d="M 57,155 L 88,155 L 85,185 L 60,185 Z" class="body-fill" />
+          <path d="M 215,135 Q 235,145 225,175" stroke="#5e81ac" stroke-width="12" fill="none" stroke-linecap="round" />
+          <circle cx="215" cy="140" r="3" fill="#88c0d0" />
+        </svg>
+      </div>
+      <p class="caption">"Napıyosun?" soruma gelen o tek cümleyle her şeyin değiştiğini anladım.</p>
+      <button class="btn-next" onclick="goToSlide(7)">Devam Et ›</button>
+    </div>
+
+    <!-- 7. Sahne -->
+    <div class="slide" id="slide-7">
+      <div class="scene-box">
+        <div class="time-tag" style="background:#bf616a; color:white;">🏥 ACİL SERVİS / AMELİYATHANE</div>
+        <div class="dialog-bubble" style="top: 30px; right: 20px; font-style:italic; background:#2e3440; color:#ebcb8b; border:1px dashed #ebcb8b;">"...Sude... Sude..."</div>
+        <div class="char-head head-omer" style="left: 65px; top: 90px;"></div>
+        <svg viewBox="0 0 300 200">
+          <rect x="50" y="140" width="200" height="12" rx="2" fill="#4c566a" />
+          <line x1="80" y1="152" x2="80" y2="185" stroke="#4c566a" stroke-width="3" />
+          <line x1="220" y1="152" x2="220" y2="185" stroke="#4c566a" stroke-width="3" />
+          <rect x="110" y="125" width="90" height="15" rx="3" class="body-fill cloth-omer" />
+          <line x1="40" y1="40" x2="40" y2="185" stroke="#d8dee9" stroke-width="2" />
+          <rect x="35" y="55" width="10" height="18" rx="2" fill="#88c0d0" />
+          <path d="M 40,73 Q 60,110 110,130" stroke="#88c0d0" stroke-width="1.5" fill="none" stroke-dasharray="2" />
+        </svg>
+      </div>
+      <p class="caption">Hastanenin önünde bayıldım. Ameliyatta bilincim kapalıyken bile sayıkladığım tek isimdin.</p>
+      <button class="btn-next" onclick="goToSlide(8)">Devam Et ›</button>
+    </div>
+
+    <!-- 8. Sahne -->
+    <div class="slide" id="slide-8">
+      <div class="scene-box">
+        <div class="dialog-bubble" style="top: 15px; left: 15px; background:#2e3440; color:#d08770;">"Artık dayanamıyorum..."</div>
+        <div class="dialog-bubble" style="top: 45px; right: 15px; background:#a3be8c; color:#2e3440;">💬 Sude: "Orada mısın?"</div>
+        <div class="char-head head-omer" style="left: 123px; top: 60px;"></div>
+        <svg viewBox="0 0 300 200">
+          <polygon points="20,185 150,140 280,185" fill="#2e3440" stroke="#4c566a" stroke-width="2" />
+          <path d="M 140,110 Q 160,120 150,150" stroke="#5e81ac" stroke-width="10" fill="none" stroke-linecap="round" />
+          <circle cx="155" cy="140" r="3" fill="#a3be8c" />
+        </svg>
+      </div>
+      <p class="caption">Karanlıkta, çatının bir köşesinde tek başımaydım. Gelen o mesajla odama geri döndüm...</p>
+      <button class="btn-next" onclick="goToSlide(9)">Devam Et ›</button>
+    </div>
+
+    <!-- 9. Sahne -->
+    <div class="slide" id="slide-9">
+      <div class="scene-box">
+        <div class="dialog-bubble" style="top: 15px; left: 10px; font-size:0.7rem; background:#4c566a; color:#88c0d0;">🎬 Film İzliyor...</div>
+        <div class="dialog-bubble" style="top: 10px; right: 10px; font-size:0.65rem; background:#2e3440; color:#ebcb8b; max-width:110px;">"Hiç mi sevmedin? Biraz sevsen tamamlardım..."</div>
+        <div class="char-head head-sude" style="left: 45px; top: 90px;"></div>
+        <div class="char-head head-omer" style="right: 45px; top: 90px;"></div>
+        <svg viewBox="0 0 300 200">
+          <line x1="150" y1="20" x2="150" y2="180" stroke="#3b4252" stroke-dasharray="4" />
+          <rect x="25" y="140" width="100" height="10" rx="2" fill="#3b4252" />
+          <rect x="80" y="85" width="16" height="24" rx="2" fill="#88c0d0" />
+          <line x1="170" y1="140" x2="270" y2="140" stroke="#4c566a" stroke-width="2" />
+          <path d="M 220,135 L 210,110 L 230,110" fill="none" class="line-stroke" stroke="#e5e9f0" />
+        </svg>
+      </div>
+      <p class="caption">Sen kendi dünyanda hayatına devam ederken, aklımda tek bir soru yankılanıyordu...</p>
+      <button class="btn-next" onclick="goToSlide(10)">Devam Et ›</button>
+    </div>
+
+    <!-- 10. Sahne -->
+    <div class="slide" id="slide-10">
+      <div class="scene-box">
+        <div class="dialog-bubble" style="top: 15px; left: 15px; background:#3b4252; color:#ebcb8b;">🎸 Sude İçin Bir Şarkı... 🎵</div>
+        <div class="char-head head-omer" style="left: 123px; top: 40px;"></div>
+        <svg viewBox="0 0 300 200">
+          <rect x="40" y="125" width="45" height="55" rx="3" fill="#2e3440" stroke="#4c566a" stroke-width="2" />
+          <circle cx="62" cy="152" r="12" fill="#181a20" />
+          <path d="M 140,90 L 160,90 L 155,140 L 135,140 Z" class="body-fill cloth-omer" />
+          <path d="M 125,115 Q 110,135 135,145 Q 155,150 155,130 Z" fill="#e06c75" stroke="#2e3440" stroke-width="1.5" />
+          <line x1="130" y1="120" x2="95" y2="80" stroke="#d8dee9" stroke-width="3" />
+        </svg>
+      </div>
+      <p class="caption">Söyleyemediğim her kelimeyi elektro gitarımla senin için bestelediğim şarkıya döktüm...</p>
+      <button class="btn-next" onclick="goToSlide(11)">Devam Et ›</button>
+    </div>
+
+    <!-- 11. Sahne -->
+    <div class="slide" id="slide-11">
+      <div class="scene-box">
+        <div class="dialog-bubble" style="top: 15px; left: 50%; transform: translateX(-50%); background:#e06c75; color:white; width:90%; font-size:0.8rem;">
+          💬 Sude: "Artık seninle konuşmak istemiyorum." 💔
+        </div>
+        <div class="char-head head-omer" style="left: 180px; top: 100px; transform: rotate(25deg);"></div>
+        <div class="char-head head-sude" style="left: 30px; top: 40px; opacity:0.3; filter:grayscale(100%);"></div>
+        <svg viewBox="0 0 300 200">
+          <line x1="20" y1="175" x2="280" y2="175" stroke="#4c566a" stroke-width="2" />
+          <path d="M 195,145 Q 170,145 150,165" stroke="#5e81ac" stroke-width="12" fill="none" stroke-linecap="round" />
+          <rect x="220" y="165" width="16" height="10" rx="2" fill="#2e3440" stroke="#e06c75" stroke-width="1" />
+        </svg>
+      </div>
+      <p class="caption">Gelen o son mesajla her şey bitti. Dünya başıma yıkıldı...</p>
+      <button class="btn-next" onclick="goToSlide(12)">Devam Et ›</button>
+    </div>
+
+    <!-- 12. Sahne -->
+    <div class="slide" id="slide-12">
+      <div class="scene-box" style="flex-direction: column; height: auto; padding: 15px 0;">
+        <div class="speech-box">
+          "Senin için yaptığım hiçbir şeyi başkasına yapmadım. O kadar temiz sevdim ki seni bu kadar pisliğin içinde... Sen biraz olsun görmedin beni."
+        </div>
+        <div style="position: relative; width: 100px; height: 110px;">
+          <div class="char-head head-omer" style="left: 23px; top: 0;"></div>
+          <svg viewBox="0 0 100 110">
+            <path d="M 40,55 L 60,55 L 58,95 L 42,95 Z" class="body-fill cloth-omer" />
+            <path d="M 40,65 L 25,75 L 35,80" fill="none" class="line-stroke" stroke="#ebcb8b" />
+          </svg>
+        </div>
+      </div>
+      <p class="caption">İçimdeki en saf gerçeği son kez oraya bıraktım...</p>
+      <button class="btn-next" onclick="goToSlide(13)">Devam Et ›</button>
+    </div>
+
+    <!-- 13. Sahne -->
+    <div class="slide" id="slide-13">
+      <div class="scene-box" style="flex-direction: column; height: auto; padding: 15px 0;">
+        <div class="speech-box" style="border-color: #ebcb8b;">
+          "Seni buna zorlayamam. Hayatımın en büyük kaybı olacaksın... Seni hep sevicem, sana dua etmeye devam edicem. Seni çok seviyorum, hayatımın tek aşkı."
+        </div>
+        <div style="position: relative; width: 180px; height: 90px;">
+          <div class="char-head head-omer" style="left: 20px; top: 0;"></div>
+          <div class="char-head head-sude" style="right: 20px; top: 0; opacity:0.5;"></div>
+        </div>
+      </div>
+      <p class="caption">Kalbimdeki son cümleler döküldü dudaklarımdan...</p>
+      <button class="btn-next" onclick="goToSlide(14)">Devam Et ›</button>
+    </div>
+
+    <!-- 14. Sahne -->
+    <div class="slide" id="slide-14">
+      <div class="scene-box">
+        <div class="time-tag">⏳ 1 Ay Sonra...</div>
+        <div class="dialog-bubble" style="top: 25px; left: 10px; font-size:0.65rem; background:#a3be8c; color:#1a1a1a;">✨ Arkadaşlarıyla Eğleniyor...</div>
+        <div class="dialog-bubble" style="top: 25px; right: 10px; font-size:0.65rem; background:#4c566a; color:#ebcb8b;">🌙 Parkta Yıkık...</div>
+        <div class="char-head head-sude" style="left: 45px; top: 75px;"></div>
+        <div class="char-head head-omer" style="right: 45px; top: 80px;"></div>
+        <svg viewBox="0 0 300 200">
+          <line x1="150" y1="20" x2="150" y2="180" stroke="#3b4252" stroke-dasharray="4" />
+          <path d="M 60,125 L 85,125 L 80,165 L 65,165 Z" class="body-fill cloth-sude" />
+          <rect x="180" y="145" width="80" height="6" rx="2" fill="#3b4252" />
+          <path d="M 215,130 Q 205,145 220,155" stroke="#5e81ac" stroke-width="8" fill="none" />
+          <circle cx="210" cy="125" r="2" fill="#e06c75" />
+          <circle cx="205" cy="115" r="3" fill="#d8dee9" opacity="0.6" />
+        </svg>
+      </div>
+      <p class="caption">Sen yeni sayfalar açarken, ben bir park köşesinde o derin boşlukla kaldım.</p>
+      <button class="btn-next" onclick="goToSlide(15)">Devam Et ›</button>
+    </div>
+
+    <!-- 15. Sahne -->
+    <div class="slide" id="slide-15">
+      <div class="scene-box">
+        <div class="time-tag">⏳ 1 Yıl Sonra...</div>
+        <div class="dialog-bubble" style="top: 25px; left: 50%; transform: transla
