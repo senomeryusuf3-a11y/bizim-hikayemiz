@@ -3,77 +3,111 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Hikaye</title>
+  <title>Hikayem</title>
   <style>
     body { background: #f0f0f0; font-family: sans-serif; display: flex; justify-content: center; padding: 10px; margin: 0; }
     .interface { width: 100%; max-width: 400px; background: white; border: 3px solid #333; border-radius: 10px; padding: 10px; }
+    .slide { display: none; }
+    .slide.active { display: block; }
     .panel { border: 2px solid #333; margin-bottom: 10px; padding: 10px; border-radius: 5px; background: #fff; text-align: center; }
     .char { width: 60px; height: 60px; border-radius: 50%; background-size: cover; border: 2px solid #333; display: inline-block; margin: 5px; }
     .dialog { background: #e5e5e5; padding: 10px; font-size: 0.9rem; margin-top: 5px; border-radius: 5px; }
-    .nav { display: flex; justify-content: space-between; padding-top: 10px; border-top: 2px solid #ccc; font-weight: bold; }
+    .btn { background: #333; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; margin-top: 10px; width: 100%; font-weight: bold; }
+    .nav { display: flex; justify-content: space-between; padding-top: 10px; border-top: 2px solid #ccc; font-weight: bold; color: #666; }
   </style>
 </head>
 <body>
 
 <div class="interface">
+  
   <!-- SAHNE 1 -->
-  <div class="panel">
-    <div class="char" style="background-image: url('1000061928.jpg');"></div>
-    <div class="dialog">"Off, bicepsler de iyiymiş..."</div>
+  <div id="slide-1" class="slide active">
+    <div class="panel">
+      <div class="char" style="background-image: url('1000061928.jpg');"></div>
+      <div class="dialog">"Off, bicepsler de iyiymiş..."</div>
+    </div>
+    <button class="btn" onclick="next(2)">Devam Et ›</button>
   </div>
 
   <!-- SAHNE 2 -->
-  <div class="panel">
-    <div class="char" style="background-image: url('1000061928.jpg');"></div>
-    <div class="dialog">"Selaaam"</div>
+  <div id="slide-2" class="slide">
+    <div class="panel">
+      <div class="char" style="background-image: url('1000061928.jpg');"></div>
+      <div class="dialog">"Selaaam"</div>
+    </div>
+    <button class="btn" onclick="next(3)">Devam Et ›</button>
   </div>
 
   <!-- SAHNE 3 -->
-  <div class="panel">
-    <div class="char" style="background-image: url('1000064057.jpg');"></div>
-    <div class="dialog">"Dişi kurt kimin?" - "Onun zaten."</div>
+  <div id="slide-3" class="slide">
+    <div class="panel">
+      <div class="char" style="background-image: url('1000064057.jpg');"></div>
+      <div class="dialog">"Dişi kurt kimin?" - "Onun zaten."</div>
+    </div>
+    <button class="btn" onclick="next(4)">Devam Et ›</button>
   </div>
 
   <!-- SAHNE 4 -->
-  <div class="panel">
-    <div class="char" style="background-image: url('1000064057.jpg');"></div>
-    <div class="dialog">"Ben galiba aşık oldum... Seni seviyorum."</div>
+  <div id="slide-4" class="slide">
+    <div class="panel">
+      <div class="char" style="background-image: url('1000064057.jpg');"></div>
+      <div class="dialog">"Ben galiba aşık oldum... Seni seviyorum."</div>
+    </div>
+    <button class="btn" onclick="next(5)">Devam Et ›</button>
   </div>
 
   <!-- SAHNE 5 -->
-  <div class="panel">
-    <div class="char" style="background-image: url('1000061928.jpg');"></div>
-    <div class="dialog">"Müsait değilim."</div>
+  <div id="slide-5" class="slide">
+    <div class="panel">
+      <div class="char" style="background-image: url('1000061928.jpg');"></div>
+      <div class="dialog">"Müsait değilim."</div>
+    </div>
+    <button class="btn" onclick="next(6)">Devam Et ›</button>
   </div>
 
   <!-- SAHNE 6 -->
-  <div class="panel">
-    <div class="char" style="background-image: url('1000064057.jpg'); border-color: red;"></div>
-    <div class="dialog">"Sude... Sude..."</div>
+  <div id="slide-6" class="slide">
+    <div class="panel">
+      <div class="char" style="background-image: url('1000064057.jpg'); border-color: red;"></div>
+      <div class="dialog">"Sude... Sude..."</div>
+    </div>
+    <button class="btn" onclick="next(7)">Devam Et ›</button>
   </div>
 
   <!-- SAHNE 7 -->
-  <div class="panel">
-    <div class="char" style="background-image: url('1000061928.jpg');"></div>
-    <div class="dialog">"Orada mısın?"</div>
+  <div id="slide-7" class="slide">
+    <div class="panel">
+      <div class="char" style="background-image: url('1000061928.jpg');"></div>
+      <div class="dialog">"Orada mısın?"</div>
+    </div>
+    <button class="btn" onclick="next(8)">Devam Et ›</button>
   </div>
 
   <!-- SAHNE 8 -->
-  <div class="panel">
-    <div class="char" style="background-image: url('1000061928.jpg');"></div>
-    <div class="dialog">"Artık seninle konuşmak istemiyorum."</div>
+  <div id="slide-8" class="slide">
+    <div class="panel">
+      <div class="char" style="background-image: url('1000061928.jpg');"></div>
+      <div class="dialog">"Artık seninle konuşmak istemiyorum."</div>
+    </div>
+    <button class="btn" onclick="next(9)">Devam Et ›</button>
   </div>
 
   <!-- SAHNE 9 -->
-  <div class="panel">
-    <div class="char" style="background-image: url('1000064057.jpg');"></div>
-    <div class="dialog">"Seni hep sevicem, sana dua etmeye devam edicem. Seni çok seviyorum, hayatımın tek aşkı."</div>
+  <div id="slide-9" class="slide">
+    <div class="panel">
+      <div class="char" style="background-image: url('1000064057.jpg');"></div>
+      <div class="dialog">"Seni hep sevicem, sana dua etmeye devam edicem. Seni çok seviyorum, hayatımın tek aşkı."</div>
+    </div>
+    <button class="btn" onclick="next(10)">Devam Et ›</button>
   </div>
 
   <!-- SAHNE 10 -->
-  <div class="panel">
-    <div class="char" style="background-image: url('1000064057.jpg'); filter: grayscale(1);"></div>
-    <div class="dialog">"Allah belamı versin."</div>
+  <div id="slide-10" class="slide">
+    <div class="panel">
+      <div class="char" style="background-image: url('1000064057.jpg'); filter: grayscale(1);"></div>
+      <div class="dialog">"Allah belamı versin."</div>
+    </div>
+    <button class="btn" onclick="location.reload()">Başa Dön ↺</button>
   </div>
 
   <div class="nav">
@@ -81,6 +115,13 @@
     <span>→</span>
   </div>
 </div>
+
+<script>
+  function next(n) {
+    document.querySelector('.slide.active').classList.remove('active');
+    document.getElementById('slide-'+n).classList.add('active');
+  }
+</script>
 
 </body>
 </html>
