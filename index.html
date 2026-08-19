@@ -3,150 +3,84 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Bizim Hikayemiz</title>
+  <title>Hikaye</title>
   <style>
-    body { background: #1a1d24; color: #e6e8ec; font-family: sans-serif; display: flex; justify-content: center; padding: 20px; }
-    .box { width: 100%; max-width: 400px; background: #232731; padding: 20px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); text-align: center; }
-    .slide { display: none; }
-    .slide.active { display: block; }
-    .img-area { width: 100%; height: 250px; background: #181a20; margin: 15px 0; border-radius: 10px; display: flex; align-items: center; justify-content: center; gap: 20px; border: 1px solid #2f3542; }
-    .photo { width: 80px; height: 80px; border-radius: 50%; background-size: cover; background-position: center; border: 3px solid #fff; }
-    .btn { background: #4c566a; color: white; border: none; padding: 12px; border-radius: 20px; cursor: pointer; width: 100%; font-weight: bold; }
-    .text-box { background: #2e3440; padding: 15px; border-radius: 10px; margin-bottom: 15px; font-size: 0.9rem; line-height: 1.4; }
+    body { background: #f0f0f0; font-family: sans-serif; display: flex; justify-content: center; padding: 10px; margin: 0; }
+    .interface { width: 100%; max-width: 400px; background: white; border: 3px solid #333; border-radius: 10px; padding: 10px; }
+    .panel { border: 2px solid #333; margin-bottom: 10px; padding: 10px; border-radius: 5px; background: #fff; text-align: center; }
+    .char { width: 60px; height: 60px; border-radius: 50%; background-size: cover; border: 2px solid #333; display: inline-block; margin: 5px; }
+    .dialog { background: #e5e5e5; padding: 10px; font-size: 0.9rem; margin-top: 5px; border-radius: 5px; }
+    .nav { display: flex; justify-content: space-between; padding-top: 10px; border-top: 2px solid #ccc; font-weight: bold; }
   </style>
 </head>
 <body>
 
-<div class="box">
-  <!-- Slaytlar -->
-  <div id="slide-1" class="slide active">
-    <h3>PROFİL İNCELEME</h3>
-    <div class="img-area"><div class="photo" style="background-image: url('1000061928.jpg');"></div></div>
-    <div class="text-box">"Off, bicepsler de iyiymiş..." Profilime bakıp içinden geçirdiği o ilk düşünce.</div>
-    <button class="btn" onclick="next(2)">Devam Et ›</button>
+<div class="interface">
+  <!-- SAHNE 1 -->
+  <div class="panel">
+    <div class="char" style="background-image: url('1000061928.jpg');"></div>
+    <div class="dialog">"Off, bicepsler de iyiymiş..."</div>
   </div>
 
-  <div id="slide-2" class="slide">
-    <h3>İLK ADIM</h3>
-    <div class="img-area"><div class="photo" style="background-image: url('1000061928.jpg');"></div></div>
-    <div class="text-box">Ve ilk adım geldi: "Selaaam"</div>
-    <button class="btn" onclick="next(3)">Devam Et ›</button>
+  <!-- SAHNE 2 -->
+  <div class="panel">
+    <div class="char" style="background-image: url('1000061928.jpg');"></div>
+    <div class="dialog">"Selaaam"</div>
   </div>
 
-  <div id="slide-3" class="slide">
-    <h3>AĞIR İŞ</h3>
-    <div class="img-area"><div class="photo" style="background-image: url('1000064057.jpg');"></div></div>
-    <div class="text-box">Ağır bir işin ortasındayken gelen o bildirim bütün yorgunluğumu sildi.</div>
-    <button class="btn" onclick="next(4)">Devam Et ›</button>
+  <!-- SAHNE 3 -->
+  <div class="panel">
+    <div class="char" style="background-image: url('1000064057.jpg');"></div>
+    <div class="dialog">"Dişi kurt kimin?" - "Onun zaten."</div>
   </div>
 
-  <div id="slide-4" class="slide">
-    <h3>DİŞİ KURT</h3>
-    <div class="img-area"><div class="photo" style="background-image: url('1000064057.jpg');"></div></div>
-    <div class="text-box">"Dişi kurt kimin?" "Onun zatenn." Yüzümdeki o tebessümü saklayamadığım an.</div>
-    <button class="btn" onclick="next(5)">Devam Et ›</button>
+  <!-- SAHNE 4 -->
+  <div class="panel">
+    <div class="char" style="background-image: url('1000064057.jpg');"></div>
+    <div class="dialog">"Ben galiba aşık oldum... Seni seviyorum."</div>
   </div>
 
-  <div id="slide-5" class="slide">
-    <h3>İTİRAF</h3>
-    <div class="img-area"><div class="photo" style="background-image: url('1000064057.jpg');"></div></div>
-    <div class="text-box">"Ben galiba aşık oldum... Seni seviyorum."</div>
-    <button class="btn" onclick="next(6)">Devam Et ›</button>
+  <!-- SAHNE 5 -->
+  <div class="panel">
+    <div class="char" style="background-image: url('1000061928.jpg');"></div>
+    <div class="dialog">"Müsait değilim."</div>
   </div>
 
-  <div id="slide-6" class="slide">
-    <h3>SOĞUKLUK</h3>
-    <div class="img-area"><div class="photo" style="background-image: url('1000061928.jpg');"></div></div>
-    <div class="text-box">"Napıyosun?" soruma gelen o tek cümle: "Müsait değilim." Her şeyin değiştiğini anladım.</div>
-    <button class="btn" onclick="next(7)">Devam Et ›</button>
+  <!-- SAHNE 6 -->
+  <div class="panel">
+    <div class="char" style="background-image: url('1000064057.jpg'); border-color: red;"></div>
+    <div class="dialog">"Sude... Sude..."</div>
   </div>
 
-  <div id="slide-7" class="slide">
-    <h3>HASTANE</h3>
-    <div class="img-area"><div class="photo" style="background-image: url('1000064057.jpg'); border-color: red;"></div></div>
-    <div class="text-box">Hastanenin önünde bayıldım. Ameliyatta bilincim kapalıyken bile sayıkladığım tek isimdin: Sude.</div>
-    <button class="btn" onclick="next(8)">Devam Et ›</button>
+  <!-- SAHNE 7 -->
+  <div class="panel">
+    <div class="char" style="background-image: url('1000061928.jpg');"></div>
+    <div class="dialog">"Orada mısın?"</div>
   </div>
 
-  <div id="slide-8" class="slide">
-    <h3>ÇATI</h3>
-    <div class="img-area"><div class="photo" style="background-image: url('1000064057.jpg');"></div></div>
-    <div class="text-box">Çatının köşesinde tek başımaydım. "Orada mısın?" mesajıyla odama döndüm.</div>
-    <button class="btn" onclick="next(9)">Devam Et ›</button>
+  <!-- SAHNE 8 -->
+  <div class="panel">
+    <div class="char" style="background-image: url('1000061928.jpg');"></div>
+    <div class="dialog">"Artık seninle konuşmak istemiyorum."</div>
   </div>
 
-  <div id="slide-9" class="slide">
-    <h3>FİLM VE SORU</h3>
-    <div class="img-area">
-      <div class="photo" style="background-image: url('1000061928.jpg');"></div>
-      <div class="photo" style="background-image: url('1000064057.jpg');"></div>
-    </div>
-    <div class="text-box">Sen film izlerken aklımda tek soru: "Hiç mi sevmedin? Biraz sevsen tamamlardım."</div>
-    <button class="btn" onclick="next(10)">Devam Et ›</button>
+  <!-- SAHNE 9 -->
+  <div class="panel">
+    <div class="char" style="background-image: url('1000064057.jpg');"></div>
+    <div class="dialog">"Seni hep sevicem, sana dua etmeye devam edicem. Seni çok seviyorum, hayatımın tek aşkı."</div>
   </div>
 
-  <div id="slide-10" class="slide">
-    <h3>GİTAR VE ŞARKI</h3>
-    <div class="img-area"><div class="photo" style="background-image: url('1000064057.jpg');"></div></div>
-    <div class="text-box">Söyleyemediğim her kelimeyi elektro gitarımla senin için bestelediğim şarkıya döktüm.</div>
-    <button class="btn" onclick="next(11)">Devam Et ›</button>
+  <!-- SAHNE 10 -->
+  <div class="panel">
+    <div class="char" style="background-image: url('1000064057.jpg'); filter: grayscale(1);"></div>
+    <div class="dialog">"Allah belamı versin."</div>
   </div>
 
-  <div id="slide-11" class="slide">
-    <h3>SON MESAJ</h3>
-    <div class="img-area"><div class="photo" style="background-image: url('1000061928.jpg'); filter: grayscale(1);"></div></div>
-    <div class="text-box">"Artık seninle konuşmak istemiyorum." Dünya başıma yıkıldı.</div>
-    <button class="btn" onclick="next(12)">Devam Et ›</button>
-  </div>
-
-  <div id="slide-12" class="slide">
-    <h3>TEMİZ SEVDİM</h3>
-    <div class="img-area"><div class="photo" style="background-image: url('1000064057.jpg');"></div></div>
-    <div class="text-box">O kadar temiz sevdim ki seni... Sen biraz olsun görmedin beni.</div>
-    <button class="btn" onclick="next(13)">Devam Et ›</button>
-  </div>
-
-  <div id="slide-13" class="slide">
-    <h3>VEDA</h3>
-    <div class="img-area">
-      <div class="photo" style="background-image: url('1000064057.jpg');"></div>
-      <div class="photo" style="background-image: url('1000061928.jpg'); opacity: 0.5;"></div>
-    </div>
-    <div class="text-box">"Seni hep sevicem, sana dua edicem. Seni çok seviyorum, hayatımın tek aşkı."</div>
-    <button class="btn" onclick="next(14)">Devam Et ›</button>
-  </div>
-
-  <div id="slide-14" class="slide">
-    <h3>1 AY SONRA</h3>
-    <div class="img-area">
-       <div class="photo" style="background-image: url('1000061928.jpg');"></div>
-       <div class="photo" style="background-image: url('1000064057.jpg'); filter: grayscale(1);"></div>
-    </div>
-    <div class="text-box">Sen eğlenirken, ben park köşesinde o boşlukla kaldım.</div>
-    <button class="btn" onclick="next(15)">Devam Et ›</button>
-  </div>
-
-  <div id="slide-15" class="slide">
-    <h3>1 YIL SONRA</h3>
-    <div class="img-area"><div class="photo" style="background-image: url('1000064057.jpg'); filter: grayscale(1);"></div></div>
-    <div class="text-box">"Nerede hata yaptım?" diye düşünmekten ruhum bitti.</div>
-    <button class="btn" onclick="next(16)">Devam Et ›</button>
-  </div>
-
-  <div id="slide-16" class="slide">
-    <h3>30 YIL SONRA</h3>
-    <div class="img-area"><div class="photo" style="background-image: url('1000064057.jpg'); filter: grayscale(1);"></div></div>
-    <div class="text-box">30 yıl geçti... Hala aynı cümle: "Allah belamı versin."</div>
-    <button class="btn" onclick="location.reload()">Başa Dön ↺</button>
+  <div class="nav">
+    <span>← web interface</span>
+    <span>→</span>
   </div>
 </div>
-
-<script>
-  function next(n) {
-    document.querySelector('.slide.active').classList.remove('active');
-    document.getElementById('slide-'+n).classList.add('active');
-  }
-</script>
 
 </body>
 </html>
