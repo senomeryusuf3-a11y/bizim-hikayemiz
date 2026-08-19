@@ -1,1 +1,67 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Ömer & Sude</title>
+  <style>
+    body { background-color: #f0f0f0; font-family: sans-serif; display: flex; justify-content: center; padding: 20px; }
+    .box { width: 100%; max-width: 400px; background: white; padding: 20px; border-radius: 15px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+    .slide { display: none; text-align: center; }
+    .slide.active { display: block; }
+    .img-area { width: 100%; height: 250px; background: #eee; margin: 15px 0; border-radius: 10px; display: flex; align-items: center; justify-content: center; gap: 20px; }
+    .photo { width: 80px; height: 80px; border-radius: 50%; background-size: cover; border: 3px solid #ccc; }
+    .btn { background: #333; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; margin-top: 10px; width: 100%; }
+  </style>
+</head>
+<body>
+
+<div class="box">
+  <div id="slide-1" class="slide active">
+    <h3>TANIŞMA</h3>
+    <div class="img-area">
+      <div class="photo" style="background-image: url('1000064057.jpg');"></div>
+      <div class="photo" style="background-image: url('1000061928.jpg');"></div>
+    </div>
+    <p>Her şey bir kafede başladı... İlk görüş, ilk gülümseme.</p>
+    <button class="btn" onclick="next(2)">Devam Et</button>
+  </div>
+
+  <div id="slide-2" class="slide">
+    <h3>BAĞLANTI</h3>
+    <div class="img-area">
+      <div class="photo" style="background-image: url('1000064057.jpg');"></div>
+    </div>
+    <p>Ağır işlerin ortasında gelen o bildirim... Yorgunluğumu sildi.</p>
+    <button class="btn" onclick="next(3)">Devam Et</button>
+  </div>
+
+  <div id="slide-3" class="slide">
+    <h3>ÇATLAKLAR</h3>
+    <div class="img-area">
+      <div class="photo" style="background-image: url('1000064057.jpg'); border-color: red;"></div>
+    </div>
+    <p>Bazen, en sağlam yollar bile çatlak verir. O mesajla her şey yıkıldı.</p>
+    <button class="btn" onclick="next(4)">Devam Et</button>
+  </div>
+
+  <div id="slide-4" class="slide">
+    <h3>VEDA</h3>
+    <div class="img-area">
+      <div class="photo" style="background-image: url('1000064057.jpg'); filter: grayscale(1);"></div>
+    </div>
+    <p>Otuz yıl geçti... Sadece bir soru kaldı: "Allah belamı versin."</p>
+    <button class="btn" onclick="location.reload()">Başa Dön</button>
+  </div>
+</div>
+
+<script>
+  function next(n) {
+    document.querySelector('.slide.active').classList.remove('active');
+    document.getElementById('slide-'+n).classList.add('active');
+  }
+</script>
+
+</body>
+</html>
 
